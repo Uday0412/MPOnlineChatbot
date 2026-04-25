@@ -1,0 +1,11 @@
+graph TD
+    User([User]) -->|Interacts with UI| Frontend[Frontend React/Vite]
+    Frontend -->|REST API Calls| Backend[Backend FastAPI]
+    
+    subgraph Backend System
+        Backend -->|Extract Text from Docs| OCR[Tesseract OCR]
+        Backend -->|Store Uploads| FS[Local File System 'uploads/']
+        Backend -->|Generate Embeddings & Answers| RAG[RAG Pipeline]
+        RAG -->|API Calls| GenAI[Gemini AI Model]
+        Backend -->|Store Vectors / Chat History| DB[(MongoDB / Vector DB)]
+    end
